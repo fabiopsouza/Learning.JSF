@@ -1,4 +1,4 @@
-# Projects for study with JSF
+# Projects to study JSF
 
 <ul>
   <li>JSF</li>
