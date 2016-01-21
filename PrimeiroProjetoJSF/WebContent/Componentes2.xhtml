@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Principais componentes 2 - Selects</title>
+</h:head>
+<h:body>
+
+	<h:form id="frm">
+		<h1>OneMenu</h1>
+		
+		<h:selectOneMenu id="time" value="#{timeFavoritoBean.time}">
+			<f:selectItem itemValue="Corinthans" itemLabel="Timão"/>
+			<f:selectItem itemValue="Flamengo" itemLabel="Mengão"/>
+			<f:selectItem itemValue="Palmeiras"/>
+			<f:selectItem itemValue="Santos"/>
+		</h:selectOneMenu>
+		
+		<h:commandButton value="Escolher" action="#{timeFavoritoBean.escolher}"/>
+		
+		<div>
+			<h:outputText value="#{timeFavoritoBean.time}" rendered="#{not empty timeFavoritoBean.time}" />
+		</div>
+	</h:form>
+	
+	<h:form id="frm2">
+		<h1>OneRadio</h1>
+	
+		<h:selectOneRadio id="timeMany" value="#{timeFavoritoBean.time}">
+			<f:selectItem itemValue="Corinthans" itemLabel="Corinthans" />
+			<f:selectItem itemValue="Flamengo" itemLabel="Flamengo"/>
+		</h:selectOneRadio>
+		
+		<h:commandButton value="Escolher" action="#{timeFavoritoBean.escolher}"/>
+		
+		<div>
+			<h:outputText value="#{timeFavoritoBean.time}" rendered="#{not empty timeFavoritoBean.time}" />
+		</div>
+	</h:form>
+	
+	<h:form id="frm3">
+		<h1>ManyMenu</h1>
+	
+		<h:selectManyMenu id="timeMany" value="#{timeFavoritoBean.times}">
+			<f:selectItem itemValue="Corinthans" itemLabel="Timão"/>
+			<f:selectItem itemValue="Flamengo" itemLabel="Mengão"/>
+			<f:selectItem itemValue="Palmeiras"/>
+			<f:selectItem itemValue="Santos"/>
+		</h:selectManyMenu>
+		
+		<h:commandButton value="Escolher" action="#{timeFavoritoBean.escolherMany}"/>
+		
+		<ul>
+			<ui:repeat var="time" value="#{timeFavoritoBean.times}">
+				<li>#{time}</li>
+			</ui:repeat>
+		</ul>
+	</h:form>
+	
+	<h:form id="frm4">
+		<h1>ManyList</h1>
+	
+		<h:selectManyListbox id="timeMany" value="#{timeFavoritoBean.times}">
+			<f:selectItem itemValue="Corinthans" itemLabel="Timão"/>
+			<f:selectItem itemValue="Flamengo" itemLabel="Mengão"/>
+			<f:selectItem itemValue="Palmeiras"/>
+			<f:selectItem itemValue="Santos"/>
+		</h:selectManyListbox>
+		
+		<h:commandButton value="Escolher" action="#{timeFavoritoBean.escolherMany}"/>
+		
+		<ul>
+			<ui:repeat var="time" value="#{timeFavoritoBean.times}">
+				<li>#{time}</li>
+			</ui:repeat>
+		</ul>
+	</h:form>
+	
+	<h:form id="frm5">
+		<h1>ManyCheckBox</h1>
+	
+		<h:selectManyCheckbox id="timeMany" value="#{timeFavoritoBean.times}">
+			<f:selectItem itemValue="Corinthans" itemLabel="Timão"/>
+			<f:selectItem itemValue="Flamengo" itemLabel="Mengão"/>
+			<f:selectItem itemValue="Palmeiras"/>
+			<f:selectItem itemValue="Santos"/>
+		</h:selectManyCheckbox>
+		
+		<h:commandButton value="Escolher" action="#{timeFavoritoBean.escolherMany}"/>
+		
+		<ul>
+			<ui:repeat var="time" value="#{timeFavoritoBean.times}">
+				<li>#{time}</li>
+			</ui:repeat>
+		</ul>
+	</h:form>
+
+</h:body>
+</html>

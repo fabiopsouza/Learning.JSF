@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Principais atributos</title>
+	<style>
+		.campo{
+			background-color: #c0c0c0;
+			padding: 10px;
+		}
+		
+		.campo:focus{
+			background-color: #ffff00;
+		}
+	</style>
+	<script>
+		function validar(){
+			var emailInput = document.getElementById('newsletterForm:email');
+			
+			if(emailInput.value == ''){
+				emailInput.setAttribute('style', 'border-color: red;');
+				return false;
+			}
+			return true;
+		}
+	</script>
+</h:head>
+<h:body>
+
+	<h:form id="newsletterForm">
+		<h:outputLabel value="Assine nossa newsletter" rendered="true"/>
+		<br/>
+		
+		<h:inputText id="email" 
+					 value="Seu e-mail aqui" 
+					 size="40" 
+					 maxvalue="30" 
+					 title="Informe seu e-mail aqui"
+					 style="font-size: 19px"
+					 styleClass="campo"
+					 onfocus="this.value = ''"/>
+		
+		<h:commandButton id="assinarBotao" value="Assinar"
+			onclick="return validar()"/>
+	</h:form>
+
+</h:body>
+</html>

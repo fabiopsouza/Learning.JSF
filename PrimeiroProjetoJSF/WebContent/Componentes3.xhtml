@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Principais componentes 3 - Botoes</title>
+</h:head>
+<h:body>
+
+	<h:form id="frm">
+		Nome:
+		<h:inputText value="#{formularioBean.nome}" />
+		<br/>
+		<br/>
+				
+		<h:commandButton value="Enviar" />
+		<br/>
+		<br/>
+		
+		<h:commandButton value="Limar" type="reset"/>
+		<br/>
+		<br/>
+		
+		<h:commandButton image="/imagens/..."/>
+		<br/>
+		<br/>
+		
+		<h:commandLink value="Link" />
+		<br/>
+		<br/>
+		
+		<h:outputLink value="http://www.google.com.br">Google</h:outputLink>
+		<br/>
+		<br/>
+		
+		<h:link value="Link interno"/>
+		<br/>
+		<br/>
+		
+		<h:outputLink value="http://www.google.com.br">
+			Link com parâmetros dinâmicos
+			<f:param name="q" value="Teste"></f:param>
+		</h:outputLink>
+		<br/>
+		<br/>
+	</h:form>
+
+</h:body>
+</html>
