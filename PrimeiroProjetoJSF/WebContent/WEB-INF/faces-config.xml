@@ -11,4 +11,8 @@
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 
+	<application>
+		<message-bundle>com.algaworks.cursojsf2.resources.Messages</message-bundle>
+	</application>
+
 </faces-config>
