@@ -5,8 +5,6 @@ import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
-import com.sun.prism.impl.BaseMesh.FaceMembers;
-
 @ManagedBean
 public class MensagensBean {
 

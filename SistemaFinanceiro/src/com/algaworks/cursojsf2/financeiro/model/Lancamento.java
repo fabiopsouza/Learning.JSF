@@ -3,15 +3,43 @@ package com.algaworks.cursojsf2.financeiro.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+@Entity
 public class Lancamento {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer codigo;
+	
+	@Enumerated(EnumType.STRING)
 	private TipoLancamento tipo;
+	
+	@ManyToOne
+	@JoinColumn(name="codigo_pessoa")
 	private Pessoa pessoa;
+	
 	private String descricao;
 	private BigDecimal valor;
+	
+	@Column(name="data_vencimento")
 	private Date dataVencimento;
+	
 	private boolean pago;
+	
+	@Column(name="data_pagamento")
 	private Date dataPagamento;
 	
 	public Integer getCodigo() {
@@ -63,4 +91,27 @@ public class Lancamento {
 		this.dataPagamento = dataPagamento;
 	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Lancamento other = (Lancamento) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
+	}
 }

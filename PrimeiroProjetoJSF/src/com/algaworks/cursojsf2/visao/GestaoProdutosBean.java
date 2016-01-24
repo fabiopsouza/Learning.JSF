@@ -20,6 +20,10 @@ import com.algaworks.cursojsf2.dominio.Produto;
 //@RequestScoped
 public class GestaoProdutosBean implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private List<Produto> produtos;
 	private Produto produto;
 	private Produto produtoSelecionado;

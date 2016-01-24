@@ -11,22 +11,26 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
+import com.algaworks.cursojsf2.financeiro.exception.RegraNegocioException;
 import com.algaworks.cursojsf2.financeiro.model.Lancamento;
 import com.algaworks.cursojsf2.financeiro.model.Pessoa;
 import com.algaworks.cursojsf2.financeiro.model.TipoLancamento;
-import com.algaworks.cursojsf2.financeiro.service.GestaoPessoas;
+import com.algaworks.cursojsf2.financeiro.service.GestaoLancamentos;
+import com.algaworks.cursojsf2.financeiro.util.FacesUtil;
+import com.algaworks.cursojsf2.financeiro.util.Repositorios;
 
 @ManagedBean
 @ViewScoped
 public class CadastroLancamentoBean implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	private Repositorios repositorios = new Repositorios();
 	private List<Pessoa> pessoas = new ArrayList<Pessoa>();
 	private Lancamento lancamento = new Lancamento();
 
 	@PostConstruct
 	public void init() {
-		GestaoPessoas gestaoPessoas = new GestaoPessoas();
-		this.pessoas = gestaoPessoas.listarTodas();
+		this.pessoas = repositorios.getPessoas().todas();
 	}
 	
 	public void lancamentoPagoModificado(ValueChangeEvent event){
@@ -36,20 +40,14 @@ public class CadastroLancamentoBean implements Serializable {
 	}
 	
 	public void cadastrar() {
-		System.out.println("Tipo: " + this.lancamento.getTipo());
-		System.out.println("Pessoa: " + this.lancamento.getPessoa().getNome());
-		System.out.println("Descrição: " + this.lancamento.getDescricao());
-		System.out.println("Valor: " + this.lancamento.getValor());
-		System.out.println("Data vencimento: " + this.lancamento.getDataVencimento());
-		System.out.println("Conta paga: " + this.lancamento.isPago());
-		System.out.println("Data pagamento: " + this.lancamento.getDataPagamento());
-
-		//Limpar tela
-		this.lancamento = new Lancamento();
-		
-		String msg = "Cadastro efetuado com sucesso!";
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
+		GestaoLancamentos gestaoLancamentos = new GestaoLancamentos(this.repositorios.getLancamentos());
+		try {
+			gestaoLancamentos.salvar(lancamento);
+			this.lancamento = new Lancamento();//Limpar tela
+			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_INFO, "Cadastro efetuado com sucesso!");
+		} catch (RegraNegocioException e) {
+			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_ERROR, e.getMessage());
+		}
 	}
 	
 	public TipoLancamento[] getTiposLancamentos() {
