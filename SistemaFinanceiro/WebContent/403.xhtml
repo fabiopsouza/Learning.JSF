@@ -1,0 +1,18 @@
+<ui:composition template="/template/_Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+	<ui:define name="titulo">Acesso negado</ui:define>
+	
+	<ui:define name="conteudo">
+		<h1>Acesso negado</h1>
+		
+		Você não tem privilégios para acessar essa página
+		
+		<br/><br/>
+		<input type="button" value="Voltar" onclick="history.back()"/>
+	</ui:define>
+	
+</ui:composition>

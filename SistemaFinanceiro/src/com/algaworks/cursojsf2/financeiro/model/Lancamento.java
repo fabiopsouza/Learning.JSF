@@ -1,5 +1,6 @@
 package com.algaworks.cursojsf2.financeiro.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -18,7 +19,9 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 @Entity
-public class Lancamento {
+public class Lancamento implements Serializable, Cloneable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -113,5 +116,10 @@ public class Lancamento {
 		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
+	}
+	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 }

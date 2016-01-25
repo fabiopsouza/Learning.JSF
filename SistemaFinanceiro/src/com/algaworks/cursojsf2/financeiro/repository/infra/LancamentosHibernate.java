@@ -52,4 +52,9 @@ public class LancamentosHibernate implements Lancamentos{
 		return obj != null ? (Lancamento)obj : null;
 	}
 
+	@Override
+	public Lancamento porCodigo(Integer codigo) {
+		return this.em.find(Lancamento.class, codigo);
+	}
+
 }

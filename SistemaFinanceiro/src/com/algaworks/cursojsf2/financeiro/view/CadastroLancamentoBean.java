@@ -34,20 +34,26 @@ public class CadastroLancamentoBean implements Serializable {
 	}
 	
 	public void lancamentoPagoModificado(ValueChangeEvent event){
-		this.lancamento.setPago((Boolean)event.getNewValue());
-		this.lancamento.setDataPagamento(null); //Limpa campo
+		this.getLancamento().setPago((Boolean)event.getNewValue());
+		this.getLancamento().setDataPagamento(null); //Limpa campo
 		FacesContext.getCurrentInstance().renderResponse(); //Pula para última fase do JSF (sem validação/formatação)
 	}
 	
-	public void cadastrar() {
+	public void salvar() {
 		GestaoLancamentos gestaoLancamentos = new GestaoLancamentos(this.repositorios.getLancamentos());
 		try {
-			gestaoLancamentos.salvar(lancamento);
-			this.lancamento = new Lancamento();//Limpar tela
-			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_INFO, "Cadastro efetuado com sucesso!");
+			gestaoLancamentos.salvar(getLancamento());
+			this.setLancamento(new Lancamento());//Limpar tela
+			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_INFO, "Lançamento salvo com sucesso!");
 		} catch (RegraNegocioException e) {
 			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_ERROR, e.getMessage());
+		} catch (CloneNotSupportedException e) {
+			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_ERROR, e.getMessage());
 		}
+	}
+	
+	public boolean isEditando(){
+		return this.lancamento.getCodigo() != null;
 	}
 	
 	public TipoLancamento[] getTiposLancamentos() {
@@ -58,8 +64,17 @@ public class CadastroLancamentoBean implements Serializable {
 		return lancamento;
 	}
 
+	public void setLancamento(Lancamento lancamento) throws CloneNotSupportedException {
+		this.lancamento = lancamento;
+		
+		if(this.lancamento == null){
+			this.lancamento = new Lancamento();
+		} else{
+			this.lancamento = (Lancamento) lancamento.clone(); //clone() para tirar o attached do JPA que salva sózinho alterações no obj.
+		}
+ 	}
+	
 	public List<Pessoa> getPessoas() {
 		return pessoas;
 	}
-	
 }
