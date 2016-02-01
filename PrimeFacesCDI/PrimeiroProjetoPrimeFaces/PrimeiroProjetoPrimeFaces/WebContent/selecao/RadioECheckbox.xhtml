@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+<h:body>
+
+	<h:form id="frm">
+		<p:messages />
+
+		<p:panelGrid columns="2">
+			<p:outputLabel value="Nome" for="nome" />
+			<p:inputText id="nome" value="#{radioBean.nome}" required="true" />
+
+			<p:outputLabel value="Sexo" for="sexo" />
+			<p:selectOneRadio id="sexo" required="true" value="#{radioBean.sexo}"
+				layout="pageDirection">
+				<f:selectItem itemLabel="Masculino" itemValue="M" />
+				<f:selectItem itemLabel="Feminino" itemValue="F" />
+			</p:selectOneRadio>
+
+			<p:outputLabel value="Estado Civil" for="estadoCivil" />
+			<h:panelGroup>
+				<p:selectOneRadio id="estadoCivil" required="true"
+					value="#{radioBean.estadoCivil}" layout="custom">
+					<f:selectItem itemValue="solteiro" />
+					<f:selectItem itemValue="casado" />
+					<f:selectItem itemValue="divorciado" />
+				</p:selectOneRadio>
+
+				<h:panelGrid columns="3">
+					<p:radioButton id="opt1" for="estadoCivil" itemIndex="0" />
+					<p:radioButton id="opt2" for="estadoCivil" itemIndex="1" />
+					<p:radioButton id="opt3" for="estadoCivil" itemIndex="3" />
+
+					<p:outputLabel value="solteiro" for="opt1" />
+					<p:outputLabel value="casado" for="opt2" />
+					<p:outputLabel value="divorciado" for="opt3" />
+				</h:panelGrid>
+			</h:panelGroup>
+
+			<p:outputLabel value="Interesses" for="interesses" />
+			<p:selectManyCheckbox id="interesses"
+				value="#{selecaoPerfilUsuarioBean.interesses}" required="true">
+				<f:selectItems value="#{selecaoPerfilUsuarioBean.interesses}"
+					var="interesse" itemLabel="#{interesse.descricao}"
+					itemValue="#{interesse}" />
+			</p:selectManyCheckbox>
+			
+			<p:outputLabel value="Aviso" />
+			<p:outputLabel value="Set do Checkbox nao implementado, está apenas para leitura" />
+		</p:panelGrid>
+
+		<p:commandButton value="Atualizar" action="#{radioBean.atualizar}"
+			update="@form" />
+	</h:form>
+
+</h:body>
+</html>
