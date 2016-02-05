@@ -38,30 +38,39 @@
 				paginatorPosition="bottom">
 
 				<p:column headerText="SKU" style="text-align: center; width: 100px">
-					<h:outputText value="123"/>
+					<h:outputText value="123" />
 				</p:column>
-				
+
 				<p:column headerText="Nome">
-					<h:outputText value="Bala de morango"/>
+					<h:outputText value="Bala de morango" />
 				</p:column>
-				
+
 				<p:column headerText="Categoria" style="width: 250px">
-					<h:outputText value="Doces - Balas de chicletes"/>
+					<h:outputText value="Doces - Balas de chicletes" />
 				</p:column>
-				
-				<p:column headerText="Valor unitário" style="text-align: right; width: 120px">
-					<h:outputText value="R$ 1,20"/>
+
+				<p:column headerText="Valor unitário"
+					style="text-align: right; width: 120px">
+					<h:outputText value="R$ 1,20" />
 				</p:column>
-				
-				<p:column headerText="Estoque" style="text-align: center; width: 100px">
-					<h:outputText value="98"/>
+
+				<p:column headerText="Estoque"
+					style="text-align: center; width: 100px">
+					<h:outputText value="98" />
 				</p:column>
-				
+
 				<p:column style="text-align: center; width: 100px">
-					<p:button title="Editar" icon="ui-icon-pencil"/>
-					<p:commandButton title="Excluir" icon="ui-icon-trash"/>
+					<p:button title="Editar" icon="ui-icon-pencil" />
+					<p:commandButton title="Excluir" icon="ui-icon-trash" oncomplete="PF('confirmacaoExclusao').show();"/>
 				</p:column>
 			</p:dataTable>
+
+			<p:confirmDialog header="Exclusao de produto"
+				message="Tem certeza que deseja excluir o produto?"
+				widgetVar="confirmacaoExclusao">
+				<p:button value="Não" onclick="PF('confirmacaoExclusao').hide(); return false;"/>
+				<p:button value="Sim" oncomplete="PF('confirmacaoExclusao').hide();"/>
+			</p:confirmDialog>
 		</h:form>
 
 	</ui:define>
