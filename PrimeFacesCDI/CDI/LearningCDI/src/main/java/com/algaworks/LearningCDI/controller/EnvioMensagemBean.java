@@ -4,7 +4,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.algaworks.LearningCDI.service.MensageiroCorreio;
+import com.algaworks.LearningCDI.service.Mensageiro;
 import com.algaworks.LearningCDI.service.Urgente;
 
 @Named
@@ -14,7 +14,7 @@ public class EnvioMensagemBean {
 	@Inject 
 	@Urgente  //Qualificador(MensageiroSMS)
 	//@Default -> Vai para a implementação que nao tem qualificador
-	private MensageiroCorreio mensageiro;
+	private Mensageiro mensageiro;
 	
 	private String texto;
 	
