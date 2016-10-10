@@ -4,11 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.inject.Named;
 
-@ManagedBean
-@ViewScoped
+@Named
+@ViewScoped //Extensão do Steve Taylor entende que ViewScoped é do CDI e não do JSF, então sobrescreve
 public class PesquisaProdutosBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
